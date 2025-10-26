@@ -1,9 +1,9 @@
 import numpy as np
 from astropy.constants import k_B, h
 from scipy.integrate import simpson
-from ntsz_utils import get_planck_bandpass, get_data_path
+from .ntsz_utils import get_planck_bandpass, get_data_path
 from collections import deque
-from ntsz import ntsz_single_interpol, ntsz_broken_interpol
+from .ntsz import ntsz_single_interpol, ntsz_broken_interpol
 import os
 
 

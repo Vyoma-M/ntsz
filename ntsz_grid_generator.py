@@ -9,7 +9,7 @@ from astropy.io import fits
 from astropy.constants import pc, e, m_e, k_B, c, sigma_T, h
 from scipy.integrate import quad
 from multiprocessing import Pool
-from ntsz import photon_scat_kernel, i_x
+from .ntsz import photon_scat_kernel, i_x
 
 
 class NTSZGridGenerator_single:

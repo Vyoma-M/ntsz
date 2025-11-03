@@ -1,9 +1,9 @@
 import numpy as np
 from astropy.constants import k_B, h
 from scipy.integrate import simpson
-from .ntsz_utils import get_planck_bandpass, get_data_path
+from ntsz_utils import get_planck_bandpass, get_data_path
 from collections import deque
-from .ntsz import ntsz_single_interpol, ntsz_broken_interpol
+from ntsz import ntsz_single_interpol, ntsz_broken_interpol
 import os
 
 
@@ -54,20 +54,24 @@ class BandpassCorrector:
     """
 
     def __init__(
-        self, path_to_grid=None, alpha=3.61, alpha2=3.61, pmin=1.0, pbreak=None
+        self, path_to_grid=None, alpha=3.61, alpha2=3.61, pmin=1.0,
+        pbreak=None, model='single'
             ):
         self.T_CMB = 2.7255  # K
         self.alpha = alpha
         self.alpha2 = alpha2
         self.pmin = pmin
         self.pbreak = pbreak
-        self.path_to_grid = path_to_grid or get_data_path(subfolder="data")
-
+        self.path_to_grid = path_to_grid
+        self.model = model
         self.planck_freq = {
             "LFI": [70],
             "HFI": [100, 143, 217, 353, 545, 857]
         }
-
+        if self.path_to_grid is None:
+            self.path_to_grid = get_data_path(
+                subfolder="data"
+            )/f"ntsz_{model}_grid.fits"
         # Validate grid path
         self._validate_grid_path()
 
@@ -76,8 +80,11 @@ class BandpassCorrector:
             print(f"Using {self.path_to_grid} as the ntSZ spectra grid\
                  for interpolation.")
         elif os.path.isdir(self.path_to_grid):
-            print(f"Using directory {self.path_to_grid} for ntSZ interpolation\
-                 data.")
+            raise IsADirectoryError(
+                f"Expected a FITS file for the ntSZ grid, but found a\
+                    directory at: {self.path_to_grid}\n"
+                f"Please provide the full path to the FITS file."
+            )
         else:
             raise FileNotFoundError(
                 f"Missing grid FITS file or directory at:\

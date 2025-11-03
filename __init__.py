@@ -47,6 +47,9 @@ from .ntsz import (
     powerlaw_int,
     broken_fe,
     brokenpowerlaw_int,
+    ksz,
+    ntsz_single_interpol,
+    ntsz_broken_interpol
     )
 
 from .planck_bandpass import (
@@ -55,6 +58,7 @@ from .planck_bandpass import (
 
 from .ntsz_utils import (
     get_data_path,
+    get_path,
     writefile,
     create_fits,
     read_fits

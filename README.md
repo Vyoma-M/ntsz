@@ -14,17 +14,7 @@ While the first model results in the thermal SZ spectrum with relativistic corre
 ## Installation
 With ```pip```:
 
-` pip install ntsz `
-
-The following modules need to be installed to use this package:
-
-```
-healpy
-numpy
-astropy
-multiprocessing
-scipy
-```
+``` pip install ntsz ```
 
 ## Usage
 The [example_notebook.ipynb](example_notebook.ipynb) can be used to familiarise oneself with the package.

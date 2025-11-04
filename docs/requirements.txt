@@ -1,0 +1,5 @@
+healpy
+numpy
+astropy
+multiprocessing
+scipy

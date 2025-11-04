@@ -75,6 +75,6 @@ If you found this package useful for your work, please cite the following papers
 License
 -------
 
-Copyright 2025 Vyoma Muralidhara and contributors.
+Copyright 2025 Vyoma Muralidhara.
 
 ntsz is free software made available under the MIT License. For details see the LICENSE file.

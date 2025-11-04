@@ -10,7 +10,7 @@ def get_data_path(subfolder: str = None):
     if env_data_path:
         base_path = Path(env_data_path).expanduser().resolve()
     else:
-        base_path = Path(__file__).resolve().parent
+        base_path = Path(__file__).resolve().parent.parent
     if subfolder:
         return base_path / subfolder
     return base_path

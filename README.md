@@ -16,6 +16,11 @@ With ```pip```:
 
 ``` pip install ntsz ```
 
+## Test
+Test your installation with:
+
+```python setup.py test```
+
 ## Usage
 The [example_notebook.ipynb](example_notebook.ipynb) can be used to familiarise oneself with the package.
 The user is referred to documentation for further information on other tools available with this package.
@@ -62,8 +67,7 @@ If you found this package useful for your work, please cite the following papers
 }
 ```
 
-License
--------
+## License
 
 Copyright 2025 Vyoma Muralidhara.
 

@@ -4,6 +4,7 @@ from scipy.integrate import quad, simpson
 from scipy.special import kv
 from astropy.io import fits
 from scipy import interpolate
+from ntsz_utils import get_data_path
 
 # Define constants
 c = c.si.value
@@ -399,7 +400,7 @@ def ksz(ytsz, Te, x):
 
 
 # The following functions estimate ntSZ spectra through interpolation
-def ntsz_single_interpol(pmin, freq, path_to_grid, alpha=3.61):
+def ntsz_single_interpol(pmin, freq, path_to_grid=None, alpha=3.61):
     """Interpolate non-thermal SZ spectra for single power-law momentum
     distribution of non-thermal electrons. This function can be used to compute
     multiple spectra while keeping all variables of the single power-law fixed
@@ -432,6 +433,12 @@ def ntsz_single_interpol(pmin, freq, path_to_grid, alpha=3.61):
          specific intensity of the CMB is computed by
          h_x * ynth.
     """
+    model = 'single'
+    pow = alpha
+    if path_to_grid is None:
+        path_to_grid = get_data_path(
+            subfolder="data"
+        )/f"ntsz_grid_{model}.fits"
     hdu = fits.open(path_to_grid)
     ntsz_finegrid = np.transpose(hdu[1].data)
     hdu.close()
@@ -441,13 +448,13 @@ def ntsz_single_interpol(pmin, freq, path_to_grid, alpha=3.61):
     ntsz_interpol = interpolate.RectBivariateSpline(
         gridf, pm, ntsz_finegrid, kx=1, ky=1
     )
-    pp1 = pe(alpha, pmin, 5e5)
+    pp1 = pe(pow, pmin, 5e5)
     h_x = ntsz_interpol(freq * 1e9, pmin)[:, 0] * m_e * c**2 / pp1
     return h_x
 
 
 def ntsz_broken_interpol(
-    pbreak, freq, path_to_grid, pmin=1.0, alpha2=3.61
+    pbreak, freq, path_to_grid=None, pmin=1.0, alpha2=3.61
         ):
     """Interpolate non-thermal SZ spectra for broken power-law momentum
     distribution of non-thermal electrons. This function can be used to compute
@@ -484,6 +491,11 @@ def ntsz_broken_interpol(
          specific intensity of the CMB is then computed by
          h_x * ynth.
     """
+    model = 'broken'
+    if path_to_grid is None:
+        path_to_grid = get_data_path(
+            subfolder="data"
+        )/f"ntsz_grid_{model}.fits"
     hdu = fits.open(path_to_grid)
     ntsz_finegrid = np.transpose(hdu[1].data)
     hdu.close()

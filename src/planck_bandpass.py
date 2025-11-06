@@ -71,7 +71,7 @@ class BandpassCorrector:
         if self.path_to_grid is None:
             self.path_to_grid = get_data_path(
                 subfolder="data"
-            )/f"ntsz_{model}_grid.fits"
+            )/f"ntsz_grid_{model}.fits"
         # Validate grid path
         self._validate_grid_path()
 

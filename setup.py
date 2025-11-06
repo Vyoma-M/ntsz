@@ -45,5 +45,6 @@ setup(
         'astropy',
         'multiprocessing'
     ],
+    test_suite='tests',
     zip_safe=False,
 )

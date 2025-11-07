@@ -11,14 +11,13 @@ if sys.argv[-1] == "publish":
 
 setup(
     name='ntsz',
-    version='1.0',
+    version='1.2',
     author='Vyoma Muralidhara',
     author_email='vyoma1993@gmail.com',
     description='A python 3 implementation for calculation of various Sunyaev\
         -Zeldovich effects.',
     long_description=open('README.md').read(),
-    packages=find_namespace_packages(where="src"),
-    package_dir={"": "src"},
+    packages=find_namespace_packages(),
     package_data={
         "ntsz": ["LICENSE"],
         "ntsz.data": [
@@ -34,7 +33,7 @@ setup(
         'Programming Language :: Python :: 3',
         "Intended Audience :: Developers",
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: MIT",
+        "License :: OSI Approved :: MIT License",
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.6',
@@ -43,7 +42,6 @@ setup(
         'numpy',
         'scipy',
         'astropy',
-        'multiprocessing'
     ],
     test_suite='tests',
     zip_safe=False,

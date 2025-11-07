@@ -1,5 +1,9 @@
+"""
+A unit test to compute rSZ using the Itoh et al. 1998 method and compare it
+with the thermal SZ spectrum computed using the ntsz package's thermal_int.
+"""
 import unittest
-from ntsz import thermal_int, freq_to_x, i_x
+from ntsz.ntsz import thermal_int, freq_to_x, i_x
 from astropy.constants import k_B, c, h
 import numpy as np
 

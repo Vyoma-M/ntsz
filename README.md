@@ -19,7 +19,7 @@ With ```pip```:
 ## Test
 Test your installation with:
 
-```python setup.py test```
+```python -m unittest discover```
 
 ## Usage
 The [example_notebook.ipynb](example_notebook.ipynb) can be used to familiarise oneself with the package.

@@ -4,7 +4,7 @@ from scipy.integrate import quad, simpson
 from scipy.special import kv
 from astropy.io import fits
 from scipy import interpolate
-from ntsz_utils import get_data_path
+from ntsz.ntsz_utils import get_data_path
 
 # Define constants
 c = c.si.value
